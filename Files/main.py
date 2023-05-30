@@ -233,7 +233,7 @@ class CWidget(QWidget):
         # 테이블 위젯 값 쓰기
         self.list.clear()
         # select dataframe
-        df = self.df_list[id];
+        df = self.df_list[id]
         # table write
         col = len(df.keys())
         self.list.setColumnCount(col)
@@ -345,9 +345,12 @@ class CWidget(QWidget):
         row = self.timeline.currentIndex().row()
         column = self.timeline.currentIndex().column()
         if column == 0:
-            data = self.timeline.item(row, column).text()
-            time = int(float(data) * 1000)
-            self.mp.posMoveMedia(time)
+            if self.timeline.item(row, column) is None:
+                pass
+            else:
+                data = self.timeline.item(row, column).text()
+                time = int(float(data) * 1000)
+                self.mp.posMoveMedia(time)
         else:
             pass
     def plusRow(self):
