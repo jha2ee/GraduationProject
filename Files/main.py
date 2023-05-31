@@ -382,6 +382,7 @@ class ThreadClass(QThread, QWidget):
 
     def __init__(self, parent):
         super().__init__(parent)
+        self.volume_value = 0.0
         self.parent = parent
         self._mutex = QMutex()
         self.speed_value = 0.0
@@ -416,9 +417,9 @@ class ThreadClass(QThread, QWidget):
                 audio.a_speed('../TTS/kor' + str(i - 1) + '.wav', self.speedValue,
                               '../TTS/kor_FAST' + str(i - 1) + '.wav')
                 audio.a_volume('../TTS/kor_FAST' + str(i - 1) + '.wav', self.volumeValue,
-                               '../TTS/kor_FAST' + str(i - 1) + '.wav')
-                if os.path.exists('../TTS/kor' + str(i - 1) + '.wav'):
-                    os.remove('../TTS/kor' + str(i - 1) + '.wav')
+                               '../TTS/kor' + str(i - 1) + '.wav')
+                if os.path.exists('../TTS/kor_FAST' + str(i - 1) + '.wav'):
+                    os.remove('../TTS/kor_FAST' + str(i - 1) + '.wav')
                 else:
                     print("파일 존재 안함")
                 self.countChanged.emit(count)
